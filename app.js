@@ -21,6 +21,7 @@ const allowedCors = [
   "http://api.tv-operaciones.cl/",
   "http://tv-operaciones.cl",
   "http://www.tv-operaciones.cl",
+  "https://www.tv-operaciones.cl",
   "http://tv-operaciones.cl/manager",
   "http://www.tv-operaciones.cl/manager",
   "http://tv-operaciones.cl/admin",

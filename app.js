@@ -18,8 +18,8 @@ const { mongoose } = require("./config/config.mongoose");
 const app = express();
 
 const allowedCors = [
-  "http://172.19.14.135",
-  "https://172.19.14.135",
+  "http://172.19.14.135:5000/api/v1",
+  "https://172.19.14.135:5000/api/v1",
   "http://172.19.14.135:8000",
   "http://172.19.14.135:8001",
   "http://172.19.14.135:8000/manager",

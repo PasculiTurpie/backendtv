@@ -1,0 +1,15 @@
+
+##Recuperar peliculas con paginación###
+GET http://192.168.5.225:5000/api/v1/channel
+
+##Recuperar peliculas con paginación###
+GET http://192.168.5.225:5000/api/v1/channel/all
+
+##Recuperar los Ususarios###
+
+GET http://192.168.5.225:5000/api/v1/user
+
+
+##Recuperar un Canal por su id ###
+
+GET http://192.168.5.225:5000/api/v1/channel/6758c09cbae8554830d98e02

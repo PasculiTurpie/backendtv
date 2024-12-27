@@ -17,7 +17,11 @@ const { mongoose } = require("./config/config.mongoose");
 
 const app = express();
 
-/* const allowedCors = [
+const allowedCors = [
+  "http://172.19.14.135",
+  "https://172.19.14.135",
+  "http://172.19.14.135:5000",
+  "https://172.19.14.135:5000",
   "http://172.19.14.135:5000/api/v1/channel",
   "https://172.19.14.135:5000/api/v1/channel",
   "http://172.19.14.135:8000",
@@ -53,11 +57,9 @@ const corsOptions = {
   },
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Content-Type,Authorization",
-}; */
+};
 
-//app.use(cors(corsOptions)); // Integrar el middleware de CORS
-
-app.use(cors())
+app.use(cors(corsOptions)); // Integrar el middleware de CORS
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());

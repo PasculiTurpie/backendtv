@@ -18,6 +18,7 @@ const { mongoose } = require("./config/config.mongoose");
 const app = express();
 
 const allowedCors = [
+  "http://172.19.14.135",
   /^http:\/\/172\.19\.14\.135(:\d+)?(\/.*)?$/, // Permite cualquier puerto y rutas bajo esta IP
   /^https:\/\/172\.19\.14\.135(:\d+)?(\/.*)?$/, 
   /^http:\/\/(www\.)?tv-operaciones\.cl(\/.*)?$/,

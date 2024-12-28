@@ -18,48 +18,47 @@ const { mongoose } = require("./config/config.mongoose");
 const app = express();
 
 const allowedCors = [
-  "http://172.19.14.135",
-  "https://172.19.14.135",
-  "http://172.19.14.135:5000/api/v1",
-  "https://172.19.14.135:5000/api/v1",
-  "http://172.19.14.135:5000/api/v1/channel",
-  "https://172.19.14.135:5000/api/v1/channel",
-  "http://172.19.14.135:8000",
-  "http://172.19.14.135:8001",
-  "http://172.19.14.135:8000/manager",
-  "http://172.19.14.135:8000/admin",
-  "http://api.tv-operaciones.cl/",
-  "https://api.tv-operaciones.cl/",
-  "http://tv-operaciones.cl",
-  "http://www.tv-operaciones.cl",
-  "https://www.tv-operaciones.cl",
-  "http://tv-operaciones.cl/manager",
-  "http://www.tv-operaciones.cl/manager",
-  "http://tv-operaciones.cl/admin",
-  "http://www.tv-operaciones.cl/admin",
-  "http://localhost:8000",
-  "http://localhost:8001",
-  "http://localhost:8000/manager",
-  "http://localhost:8000/admin",
-  "http://localhost:8001/manager",
-  "http://localhost:8001/admin",
+  /^http:\/\/172\.19\.14\.135(:\d+)?(\/.*)?$/, // Permite cualquier puerto y rutas bajo esta IP
+  /^https:\/\/172\.19\.14\.135(:\d+)?(\/.*)?$/, 
+  /^http:\/\/(www\.)?tv-operaciones\.cl(\/.*)?$/,
+  /^https:\/\/(www\.)?tv-operaciones\.cl(\/.*)?$/,
+  /^http:\/\/localhost(:\d+)?(\/.*)?$/ // Para desarrollo local
 ];
+
 
 // Configuración de CORS
 const corsOptions = {
   origin: (origin, callback) => {
-    // Permite solicitudes desde orígenes especificados o sin origen (por ejemplo, herramientas como Postman)
-    if (!origin || allowedCors.includes(origin)) {
+    if (!origin || allowedCors.some((pattern) => pattern.test(origin))) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "Accept",
+  ],
+  exposedHeaders: ["Authorization"], // Exponer encabezados específicos si es necesario
+  credentials: true, // Habilitar envío de cookies y credenciales
+  preflightContinue: false,
+  optionsSuccessStatus: 204, // Respuesta exitosa para preflight
 };
 
-app.use(cors(corsOptions)); // Integrar el middleware de CORS
+app.use((err, req, res, next) => {
+  if (err instanceof Error && err.message === "Not allowed by CORS") {
+    res.status(403).json({ message: "CORS error: Access Denied" });
+  } else {
+    next(err);
+  }
+});
+
+
+app.options("*", cors(corsOptions)); // Opciones para preflight
+ // Integrar el middleware de CORS
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());

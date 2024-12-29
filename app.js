@@ -17,28 +17,19 @@ const { mongoose } = require("./config/config.mongoose");
 
 const app = express();
 
-const whitelist = ["http://172.19.14.135:5000", "http://172.19.14.135:5001","http://172.19.14.135", "http://172.19.14.135:8000", "http://172.19.14.135:8001", "http://172.19.14.135:5000/api/v1", "http://172.19.14.135:5001/api/v1"];
+const corsOptions = {
+  origin: 'http://172.19.14.135', // IP del frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
 
-const options = {
-  origin: function (origin, callback) {
-    if (whitelist.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: "GET, POST, PUT, DELETE",
-  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-  credentials: true, // enable cookies
-}
-
-
+app.use(cors(options))
 
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
  // habilitar CORS para todas las peticiones
-app.use(cors(options))
 
 const PORT = process.env.PORT || 5001;
 

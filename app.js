@@ -17,6 +17,20 @@ const { mongoose } = require("./config/config.mongoose");
 
 const app = express();
 
+const whitelist = ["http://172.19.14.135", "http://172.19.14.135:8000", "http://172.19.14.135:8001"];
+
+const options = {
+  origin: function (origin, callback) {
+    if (whitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET, POST, PUT, DELETE",
+  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+  credentials: true, // enable cookies
+}
 
 
 
@@ -24,7 +38,7 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
  // habilitar CORS para todas las peticiones
-app.use(cors())
+app.use(cors(options))
 
 const PORT = process.env.PORT || 5001;
 

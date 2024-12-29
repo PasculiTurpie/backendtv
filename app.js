@@ -17,7 +17,7 @@ const { mongoose } = require("./config/config.mongoose");
 
 const app = express();
 
-const whitelist = ["http://172.19.14.135", "http://172.19.14.135:8000", "http://172.19.14.135:8001", "http://172.19.14.135:5000/api/v1", "http://172.19.14.135:5001/api/v1"];
+const whitelist = ["http://172.19.14.135:5000", "http://172.19.14.135:5001","http://172.19.14.135", "http://172.19.14.135:8000", "http://172.19.14.135:8001", "http://172.19.14.135:5000/api/v1", "http://172.19.14.135:5001/api/v1"];
 
 const options = {
   origin: function (origin, callback) {

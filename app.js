@@ -17,13 +17,14 @@ const { mongoose } = require("./config/config.mongoose");
 
 const app = express();
 
-app.use(cors())
 
 
 
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
+ // habilitar CORS para todas las peticiones
+app.use(cors())
 
 const PORT = process.env.PORT || 5001;
 

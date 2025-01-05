@@ -17,9 +17,10 @@ const { mongoose } = require("./config/config.mongoose");
 
 const app = express();
 
-const allowedCors = [
+/* const allowedCors = [
   "http://192.168.5.248",
   "http://192.168.5.248:5000/",
+  "http://localhost:5000/",
   "http://api.tv-operaciones.cl/",
   "https://api.tv-operaciones.cl/",
   "http://tv-operaciones.cl",
@@ -35,7 +36,7 @@ const allowedCors = [
   "http://localhost:8000/admin",
   "http://localhost:8001/manager",
   "http://localhost:8001/admin",
-];
+]; */
 
 // Configuración de CORS
 /* const corsOptions = {
@@ -45,7 +46,7 @@ const allowedCors = [
   credentials: true,
 }; */
 
-app.use(cors(allowedCors));
+app.use(cors());
 
 app.use(helmet());
 app.use(morgan("dev"));

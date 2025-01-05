@@ -46,10 +46,30 @@ const app = express();
   credentials: true,
 }; */
 
-app.use(cors());
-
 app.use(helmet());
 app.use(morgan("dev"));
+
+const allowedOrigins = [
+  "http://192.168.5.248:3000",
+  "http://192.168.5.248:5000",
+  "http://tv-operaciones.cl/",
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true); // Permite el acceso
+      } else {
+        callback(new Error("CORS no permitido")); // Rechaza el acceso
+      }
+    },
+    credentials: true, // Permitir envío de cookies o autenticación
+    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
+    allowedHeaders: ["Content-Type", "Authorization"], // Cabeceras permitidas
+  })
+);
+
 app.use(express.json());
  // habilitar CORS para todas las peticiones
 

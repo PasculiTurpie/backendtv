@@ -18,6 +18,7 @@ const { mongoose } = require("./config/config.mongoose");
 const app = express();
 
 const allowedCors = [
+  "http://192.168.5.248:5000/",
   "http://api.tv-operaciones.cl/",
   "https://api.tv-operaciones.cl/",
   "http://tv-operaciones.cl",

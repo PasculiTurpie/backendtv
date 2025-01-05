@@ -49,7 +49,7 @@ const app = express();
 app.use(helmet());
 app.use(morgan("dev"));
 
-const allowedOrigins = [
+/* const allowedOrigins = [
   "http://192.168.5.248",
   "http://192.168.5.248:8000",
   "http://192.168.5.248:5000",
@@ -73,7 +73,42 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeceras permitidas
   })
-);
+); */
+
+
+
+const allowedCors = [
+  "http://localhost:8000",
+  "http://localhost:8001",
+   "http://tv-operaciones.cl",
+  "http://www.tv-operaciones.cl",
+  "http://api.tv-operaciones.cl",
+  "http://192.168.5.248",
+  "http://192.168.5.248:8000",
+  "http://192.168.5.248:5000",
+];
+
+app.use((req, res, next) => {
+  const { origin } = req.headers; // Obtener el origen de la solicitud
+  const { method } = req; // Obtener el método HTTP de la solicitud
+  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  if (allowedCors.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+  if (method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+    const requestHeaders = req.headers["access-control-request-headers"];
+    res.header("Access-Control-Allow-Headers", requestHeaders);
+    return res.end();
+  }
+  next();
+});
+
+
+
+
+
+
 
 app.use(express.json());
  // habilitar CORS para todas las peticiones

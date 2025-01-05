@@ -38,22 +38,18 @@ const allowedCors = [
 
 // Configuración de CORS
 const corsOptions = {
-  origin: (origin, callback) => {
-    // Permite solicitudes desde orígenes especificados o sin origen (por ejemplo, herramientas como Postman)
-    if (!origin || allowedCors.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
+  origin: 'http://172.19.14.135', // IP del frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 };
 
-app.use(cors(corsOptions)); // Integrar el middleware de CORS
+app.use(cors(options))
+
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
+ // habilitar CORS para todas las peticiones
 
 const PORT = process.env.PORT || 5001;
 

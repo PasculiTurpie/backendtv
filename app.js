@@ -37,14 +37,14 @@ const allowedCors = [
 ];
 
 // Configuración de CORS
-const corsOptions = {
+/* const corsOptions = {
   origin: 'http://172.19.14.135', // IP del frontend
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-};
+}; */
 
-app.use(cors(options))
+app.use(cors(allowedCors));
 
 app.use(helmet());
 app.use(morgan("dev"));

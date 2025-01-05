@@ -50,9 +50,13 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 const allowedOrigins = [
-  "http://192.168.5.248:3000",
+  "http://192.168.5.248:8000",
   "http://192.168.5.248:5000",
-  "http://tv-operaciones.cl/",
+  "http://tv-operaciones.cl",
+  "http://www.tv-operaciones.cl",
+  "http://api.tv-operaciones.cl",
+  "http://localhost:8000",
+  "http://localhost:5000",
 ];
 
 app.use(

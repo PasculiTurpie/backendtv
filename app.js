@@ -126,7 +126,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-// habilitar CORS para todas las peticiones
+
 
 const PORT = process.env.PORT || 5001;
 

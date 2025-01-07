@@ -75,16 +75,15 @@ app.use(
   })
 ); */
 
-
-
-const allowedCors = [
+/* const allowedCors = [
   "http://localhost:8000",
   "http://localhost:8001",
-   "http://tv-operaciones.cl",
+  "http://tv-operaciones.cl",
   "http://www.tv-operaciones.cl",
   "http://api.tv-operaciones.cl",
   "http://192.168.5.248",
   "http://192.168.5.248:8000",
+  "http://192.168.5.248:8001",
   "http://192.168.5.248:5000",
 ];
 
@@ -102,16 +101,13 @@ app.use((req, res, next) => {
     return res.end();
   }
   next();
-});
+}); */
 
 
 
-
-
-
-
+app.use(cors());
 app.use(express.json());
- // habilitar CORS para todas las peticiones
+// habilitar CORS para todas las peticiones
 
 const PORT = process.env.PORT || 5001;
 

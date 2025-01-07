@@ -103,9 +103,28 @@ app.use((req, res, next) => {
   next();
 }); */
 
+const allowedCors = [
+  "http://localhost:8000",
+  "http://localhost:8001",
+  "http://tv-operaciones.cl",
+  "http://www.tv-operaciones.cl",
+  "http://api.tv-operaciones.cl",
+  "http://192.168.5.248",
+  "http://192.168.5.248:8000",
+  "http://192.168.5.248:8001",
+  "http://192.168.5.248:5000",
+];
 
 
-app.use(cors());
+const corsOptions = {
+  origin: allowedCors, // Solo permite solicitudes desde este dominio
+  methods: "GET,POST, PUT, PATCH, DELETE", // Solo permite GET y POST
+  allowedHeaders: "Content-Type,Authorization", // Permite estos encabezados
+  preflightContinue: false, // No enviar respuestas de preflight a la siguiente ruta
+  optionsSuccessStatus: 200, // Cambiar el código de estado para las respuestas de preflight
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 // habilitar CORS para todas las peticiones
 

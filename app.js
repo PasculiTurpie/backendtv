@@ -109,10 +109,10 @@ const allowedCors = [
   "http://tv-operaciones.cl",
   "http://www.tv-operaciones.cl",
   "http://api.tv-operaciones.cl",
-  "http://192.168.5.248",
-  "http://192.168.5.248:8000",
-  "http://192.168.5.248:8001",
-  "http://192.168.5.248:5000",
+  "http://192.168.57.128",
+  "http://192.168.57.128:8000",
+  "http://192.168.57.128:8001",
+  "http://192.168.57.128:5000",
 ];
 
 

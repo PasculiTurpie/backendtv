@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const DB = process.env.PASSWORS_DB
 
-mongoose.connect('mongodb://localhost:27017/tv-operaciones')
+mongoose.connect('mongodb://172.19.14.135:27017/tv-operaciones')
 .then(() => {
     console.log('Connected to MongoDB');
 })

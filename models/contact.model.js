@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-let uniqueValidator = require("mongoose-unique-validator");
 
 const ContactSchema = new mongoose.Schema(
   {
@@ -10,7 +9,7 @@ const ContactSchema = new mongoose.Schema(
     emailContact: {
       type: String,
       lowercase: true,
-      required: false, // No obligatorio
+      required: false,
       validate: {
         validator: function (v) {
           // Solo validar si se proporciona un valor

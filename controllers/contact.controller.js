@@ -1,6 +1,6 @@
 const Contact = require('../models/contact.model');
 
-module.exports.getContact = async(req, res, next) => {
+module.exports.getContact = async(req, res) => {
   try {
     const contact = await Contact.find();
     res.json(contact);

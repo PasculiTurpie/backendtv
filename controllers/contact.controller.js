@@ -10,14 +10,16 @@ module.exports.getContact = async(req, res, next) => {
 
 }
 
-module.exports.createContact = async (req, res, next) => {
+module.exports.createContact = async (req, res) => {
   try {
-    const newContact = req.body;
+    const { nombreContact, emailContact, telefonoContact } = req.body;
+    const newContact = new Contact({ nombreContact, emailContact, telefonoContact });
     await newContact.save();
     res.json(newContact);
   } catch (error) {
-    res.status(500).json({ message: [{ error }] });
+    res.status(500).json({ message: 'Error al crear el contacto' });
   }
+ 
 }
 
 module.exports.updateContact = async (req, res, next) => {

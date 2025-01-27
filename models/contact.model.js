@@ -15,7 +15,7 @@ const ContactSchema = new mongoose.Schema(
   validate: {
     validator: function (v) {
       // Solo validar si se proporciona un valor
-      return !v || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+      return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
     },
     message: "El email debe tener un formato válido",
   },

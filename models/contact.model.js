@@ -10,7 +10,6 @@ const ContactSchema = new mongoose.Schema(
     emailContact: {
       type: String,
       lowercase: true,
-      unique: false,
       required: false, // No obligatorio
       validate: {
         validator: function (v) {
@@ -30,5 +29,4 @@ const ContactSchema = new mongoose.Schema(
 );
 
 const Contact = mongoose.model("Contact", ContactSchema);
-ContactSchema.plugin(uniqueValidator, { message: "{PATH} debe ser unico" });
 module.exports = Contact;

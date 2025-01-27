@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-let uniqueValidator = require("mongoose-unique-validator");
 
 const ContactSchema = new mongoose.Schema(
   {
@@ -30,5 +29,4 @@ const ContactSchema = new mongoose.Schema(
 );
 
 const Contact = mongoose.model("Contact", ContactSchema);
-ContactSchema.plugin(uniqueValidator, { message: "{PATH} debe ser unico" });
 module.exports = Contact;

@@ -30,7 +30,7 @@ module.exports.updateContact = async (req, res) => {
     const updatedContact = req.body;
 
     // Usa `id` directamente en la consulta
-    const contact = await Contact.findByIdAndUpdate(id, updatedContact, { new: true });
+    const contact = await Contact.findByIdAndUpdate({ id, updatedContact})
 
     if (!contact) {
       return res.status(404).json({ message: 'Contacto no encontrado' });

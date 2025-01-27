@@ -10,7 +10,7 @@ const ContactSchema = new mongoose.Schema(
     emailContact: {
       type: String,
       lowercase: true,
-      unique: true,
+      unique: false,
       required: false, // No obligatorio
       validate: {
         validator: function (v) {

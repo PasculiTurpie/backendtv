@@ -26,10 +26,15 @@ module.exports.createContact = async (req, res) => {
 
 module.exports.updateContact = async (req, res) => {
   try {
-    const { id } = req.params;
-    const updatedContact = req.body;
-    const contact = await Contact.findByIdAndUpdate(id, updatedContact, { new: true });
-    res.json(contact);
+   const {id} = req.params.id;
+   const updatedContact = req.body;
+   
+   const contact = await Contact.findByIdAndUpdate(_id, updatedContact, { new: true });
+   
+   if (!contact) return res.status(404).json({ message: 'Contacto no encontrado' });
+   
+   res.json(contact);
+
     
   } catch (error) {
     res.status(500).json({ message: 'Error al actualizar el contacto', error: error.message });    

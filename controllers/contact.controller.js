@@ -12,12 +12,7 @@ module.exports.getContact = async(req, res, next) => {
 
 module.exports.createContact = async (req, res, next) => {
   try {
-    const { nombreContact, emailContact, telefonoContact } = req.body;
-    const newContact = new Contact({
-      nombreContact,
-      emailContact,
-      telefonoContact,
-    });
+    const newContact = req.body;
     await newContact.save();
     res.json(newContact);
   } catch (error) {

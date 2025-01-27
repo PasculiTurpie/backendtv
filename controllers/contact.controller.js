@@ -24,3 +24,14 @@ module.exports.createContact = async (req, res, next) => {
     res.status(500).json({ message: [{ error }] });
   }
 }
+
+module.exports.updateContact = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { nombreContact, emailContact, telefonoContact } = req.body;
+    const updatedContact = await Contact.findByIdAndUpdate(id, { nombreContact, emailContact, telefonoContact }, { new: true });
+    res.json(updatedContact);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al actualizar el contacto' });
+  }
+}

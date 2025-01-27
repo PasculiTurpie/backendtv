@@ -26,7 +26,7 @@ module.exports.createContact = async (req, res) => {
 
 module.exports.updateContact = async (req, res) => {
   try {
-   const {id} = req.params._id;
+   const {id} = req.params.id;
    const updatedContact = req.body;
    
    const contact = await Contact.findByIdAndUpdate(id, updatedContact, { new: true });

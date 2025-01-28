@@ -10,13 +10,12 @@ module.exports.getRegions = async (req, res) => {
   }
 };
 
-module.exports.createRegion = async (req, res, next) => {
+module.exports.createRegion = async (req, res) => {
   try {
     const { name } = req.body;
     const newRegion = new Region({ name });
     await newRegion.save();
     res.json(newRegion);
-    next();
   } catch (error) {
     res.status(400).json({ msg: "Error al crear la región", error });
   }

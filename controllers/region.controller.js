@@ -23,8 +23,8 @@ module.exports.getRegionById = async (req, res) => {
 
 module.exports.createRegion = async (req, res) => {
   try {
-    const { name } = req.body;
-    const newRegion = new Region({ name });
+    const { signalType } = req.body;
+    const newRegion = new Region({ signalType });
     await newRegion.save();
     res.json(newRegion);
   } catch (error) {

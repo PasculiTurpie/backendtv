@@ -1,3 +1,5 @@
+const fs = require('fs');
+const https = require('https');
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
@@ -47,6 +49,11 @@ app.use(
   Contact
 );
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const options = {
+  key: fs.readFileSync('/etc/nginx/ssl/server.key'),
+  cert: fs.readFileSync('/etc/nginx/ssl/server.crt')
+};
+
+https.createServer(options, app).listen(PORT, () => {
+  console.log(`Servidor HTTPS en https://172.19.14.135:${PORT}`);
 });

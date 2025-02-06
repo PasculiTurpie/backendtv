@@ -24,7 +24,7 @@ app.use(morgan("dev"));
 
 
 app.use(cors({
-  origin: ['https://signal-operacionestv', 'https://signal-operacionestv/api/v1'],  // Reemplázalo por el dominio del frontend
+  origin: ['https://signal-operacionestv', 'https://signal-operacionestv/api/v1', 'https:172.19.14.135', 'https:172.19.14.135:5000/api/v1'],  // Reemplázalo por el dominio del frontend
   methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

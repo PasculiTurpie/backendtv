@@ -20,7 +20,14 @@ const app = express();
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.use(cors());
+
+app.use(cors({
+    origin: 'https://signal-operacionestv, http://signal-operacionestv',  // Reemplázalo por el dominio del frontend
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization'
+}));
+
+/* app.use(cors()); */
 app.use(express.json());
 
 

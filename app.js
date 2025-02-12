@@ -23,13 +23,29 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 
+const allowedOrigins = [
+  'https://signal-operacionestv',
+  'https://172.19.14.135:5000',
+  'https://172.19.14.135',
+  'https://signal-operacionestv/api/v1',
+  'https://172.19.14.135:5000/api/v1'
+];
+
 app.use(cors({
-  origin: ['http://signal-operacionestv/', 'http://172.19.14.135','https://signal-operacionestv', 'https://signal-operacionestv/api/v1', 'https://172.19.14.135', 'https://172.19.14.135:5000/api/v1', 'https://172.19.14.135:5000/api/v1/channel?limit=9&page=1'],  // Reemplázalo por el dominio del frontend
-  methods: ['GET', 'POST', 'PUT','PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  },
+  methods: ['GET', 'POST','PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true // Habilita el envío de cookies si es necesario
 }));
 
-/* app.use(cors()); */
+app.options('*', cors()); // Maneja pre-flight requests
+
 app.use(express.json());
 
 

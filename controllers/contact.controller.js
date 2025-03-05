@@ -10,6 +10,16 @@ module.exports.getContact = async(req, res) => {
 
 }
 
+module.exports.getIdContact = async(req, res) => {
+  try {
+    const { id } = req.params;
+    const contact = await Contact.findById(id);
+    if (!contact) return res.status(404).json({ msg: "Contacto no encontrado" });
+    res.json(contact);
+    } catch (error) {
+    res.status(500).json({ message: 'Error al obtener el contacto', error });
+}
+
 module.exports.createContact = async (req, res) => {
   try {
     const contact = req.body;

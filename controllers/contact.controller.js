@@ -19,7 +19,7 @@ module.exports.getIdContact = async(req, res) => {
     } catch (error) {
     res.status(500).json({ message: 'Error al obtener el contacto', error });
 }
-
+}
 module.exports.createContact = async (req, res) => {
   try {
     const contact = req.body;

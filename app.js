@@ -24,12 +24,12 @@ app.use(morgan("dev"));
 
 
 const allowedOrigins = [
-  'https://signal-operacionestv',
+  'https://signal-operacionestv.grupogtd.com',
   'https://172.19.14.135:5000',
   'https://172.19.14.135',
-  'https://signal-operacionestv/api/v1',
+  'https://signal-operacionestv.grupogtd.com/api/v1',
   'https://172.19.14.135:5000/api/v1',
-  'https://signal-operacionestv/api/v1/channel',
+  'https://signal-operacionestv.grupogtd.com/api/v1/channel',
   'https://172.19.14.135:5000/api/v1/channel'
 ];
 

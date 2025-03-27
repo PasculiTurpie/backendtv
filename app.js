@@ -15,7 +15,7 @@ const Critical = require("./routes/criticidad.route");
 const Multicast = require("./routes/multicast.route");
 const TipoMulticast = require("./routes/tipoMulticast.route");
 const Contact = require("./routes/contact.route");
-const { mongoose } = require("./config/config.mongoose");
+require("./config/config.mongoose");
 
 const app = express();
 
@@ -24,13 +24,9 @@ app.use(morgan("dev"));
 
 
 const allowedOrigins = [
-  'https://signal-operacionestv.grupogtd.com',
-  'https://172.19.14.135:5000',
-  'https://172.19.14.135',
-  'https://signal-operacionestv.grupogtd.com/api/v1',
-  'https://172.19.14.135:5000/api/v1',
-  'https://signal-operacionestv.grupogtd.com/api/v1/channel',
-  'https://172.19.14.135:5000/api/v1/channel'
+  'https://localhost:5000',
+  'https://signal-operacionestv.grupogtd.com',  
+  'https://172.19.14.135'
 ];
 
 app.use(cors({

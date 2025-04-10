@@ -26,7 +26,9 @@ app.use(morgan("dev"));
 const allowedOrigins = [
   'https://localhost:5000',
   'https://signal-operacionestv.grupogtd.com',  
-  'https://172.19.14.135'
+  'https://172.19.14.135',
+  'http://localhost:3000',
+  'http://localhost:8000'
 ];
 
 app.use(cors({
@@ -63,11 +65,6 @@ app.use(
   Contact
 );
 
-const options = {
-  key: fs.readFileSync('/etc/nginx/ssl/server.key'),
-  cert: fs.readFileSync('/etc/nginx/ssl/server.crt')
-};
-
-https.createServer(options, app).listen(PORT, () => {
-  console.log(`Servidor HTTPS en https://172.19.14.135:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port http://localhost:${PORT}`);
 });
